@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+.venv/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Model weights and checkpoints
+training/checkpoints/
+training/model_output/
+*.bin
+*.safetensors
+*.pt
+*.pth
+
+# Data
+data/raw/
+data/processed/
+
+# Environment
+.env
+.env.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Docker
+.dockerignore
+
+# Logs
+*.log
+logs/
+
+# Locust results
+locust_results/

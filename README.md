@@ -44,7 +44,7 @@ pip install -r requirements.txt
 python train.py
 ```
 
-> **Note on training time:** Full fine-tuning of `bert-base-uncased` on the complete ~10,400-sample training set for 5 epochs takes approximately 8–15 hours on CPU. By default, `train.py` runs a reduced demo using 2,000 samples and 3 epochs (~20–30 min on CPU), which is sufficient to produce a functional model. Pass `--full` to run the complete training run.
+> **Note on training time:** Full fine-tuning of `bert-base-uncased` on the complete ~10,400-sample training set for 5 epochs takes approximately 8–15 hours on CPU. By default, `train.py` runs a reduced demo using 2,000 samples and 3 epochs (~7 min on Apple Silicon MPS, ~20–30 min on CPU), which is sufficient to produce a functional model. Pass `--full` to run the complete training run.
 
 ### 3. Run the API
 
@@ -76,14 +76,16 @@ docker-compose up --build
 
 ## Model Performance
 
-See [`docs/evaluation.md`](docs/evaluation.md) for full metrics and interpretation.
+Evaluated on the held-out test set (2,600 samples). See [`docs/evaluation.md`](docs/evaluation.md) for the full report, confusion matrix, and comparison to paper benchmarks.
 
-| Metric    | Score |
-|-----------|-------|
-| Accuracy  | TBD   |
-| Precision | TBD   |
-| Recall    | TBD   |
-| F1        | TBD   |
+| Metric    | This model (demo run) | Bell (2025) full BERT |
+|-----------|-----------------------|-----------------------|
+| Accuracy  | 0.899                 | 0.917                 |
+| Precision | 0.900                 | 0.918                 |
+| Recall    | 0.880                 | 0.904                 |
+| F1        | 0.890                 | 0.911                 |
+
+The demo run uses 2,000 training samples and 3 epochs. The ~2% F1 gap vs. the paper's full run (10,397 samples, 5 epochs) is expected and closes with more training data.
 
 ## Testing
 

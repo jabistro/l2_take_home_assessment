@@ -1,0 +1,13 @@
+.git/
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+training/checkpoints/
+data/raw/
+docs/
+tests/
+*.log
+.env
+.DS_Store

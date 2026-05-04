@@ -41,8 +41,6 @@ Thumbs.db
 .idea/
 *.swp
 
-# Docker
-.dockerignore
 
 # Logs
 *.log

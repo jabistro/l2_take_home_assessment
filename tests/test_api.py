@@ -35,9 +35,15 @@ def real_client():
     """TestClient backed by actual model weights. Skipped when model absent."""
     if not MODEL_AVAILABLE:
         pytest.skip("Model not found at training/model_output/ — run train.py first")
+
+    import api.app.classifier as clf
+
+    if not clf.is_loaded():
+        clf.load_model()
+
     from api.app.main import app
 
-    with TestClient(app) as client:
+    with TestClient(app, raise_server_exceptions=True) as client:
         yield client
 
 

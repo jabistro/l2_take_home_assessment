@@ -4,9 +4,9 @@
 
 | Parameter     | Value              |
 |---------------|--------------------|
-| Base model    | `bert-base-uncased`     |
-| Train samples | 2000    |
-| Epochs        | 3           |
+| Base model    | `bert-base-uncased`|
+| Train samples | 2000               |
+| Epochs        | 3                  |
 | Max length    | 128 tokens         |
 | Batch size    | 16                 |
 
@@ -23,10 +23,10 @@ Evaluated on the held-out test split (2,600 samples, 46.7% positive).
 
 ### Confusion matrix
 
-|                    | Predicted: Not Claim | Predicted: Claim |
-|--------------------|----------------------|------------------|
-| **Actual: Not Claim** | 1269 (TN)         | 118 (FP)        |
-| **Actual: Claim**     | 146 (FN)         | 1067 (TP)        |
+|                       | Predicted: Not Claim | Predicted: Claim |
+|-----------------------|----------------------|------------------|
+| **Actual: Not Claim** | 1269 (TN)            | 118 (FP)         |
+| **Actual: Claim**     | 146 (FN)             | 1067 (TP)        |
 
 ## Interpretation
 
@@ -46,11 +46,11 @@ and false negatives (missed claims) carry costs.
 Bell (2025) reports the following results on the same dataset with a full fine-tuning run
 (5 epochs, 10,397 training samples):
 
-| Model                | Accuracy | Precision | Recall | F1    |
-|----------------------|----------|-----------|--------|-------|
-| BERT (Finetuned)     | 0.917    | 0.918     | 0.904  | 0.911 |
-| ModernBERT (Finetuned) | 0.911  | 0.907     | 0.902  | 0.904 |
-| **This model**       | **0.898** | **0.900** | **0.880** | **0.890** |
+| Model                  | Accuracy  | Precision | Recall    | F1        |
+|------------------------|-----------|-----------|-----------|-----------|
+| BERT (Finetuned)       | 0.917     | 0.918     | 0.904     | 0.911     |
+| ModernBERT (Finetuned) | 0.911     | 0.907     | 0.902     | 0.904     |
+| **This model**         | **0.898** | **0.900** | **0.880** | **0.890** |
 
 Note: this model used a reduced training set (2000 samples, 3 epochs) for
 CPU-feasibility. A full training run is expected to achieve results closer to the paper's BERT

@@ -6,37 +6,37 @@ The claim detection system has three layers: a training pipeline that produces m
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│                         TRAINING PIPELINE (offline)                  │
-│                                                                       │
+│                        TRAINING PIPELINE (offline)                  │
+│                                                                     │
 │  ┌──────────────┐    ┌──────────────┐    ┌───────────────────────┐  │
 │  │  Composite   │    │ bert-base-   │    │  HuggingFace Trainer  │  │
 │  │  Dataset     │───▶│ uncased      │───▶│  (full param FT)      │  │
 │  │  ~13k rows   │    │  (pretrained)│    │  5 epochs / 80% split │  │
 │  └──────────────┘    └──────────────┘    └──────────┬────────────┘  │
-│                                                      │               │
-│                                               ┌──────▼──────┐       │
-│                                               │ model_output│       │
-│                                               │ (weights +  │       │
-│                                               │  tokenizer) │       │
-│                                               └─────────────┘       │
+│                                                     │               │
+│                                              ┌──────▼──────┐        │
+│                                              │ model_output│        │
+│                                              │ (weights +  │        │
+│                                              │  tokenizer) │        │
+│                                              └─────────────┘        │
 └─────────────────────────────────────────────────────────────────────┘
                                     │
                     model weights copied into image
                                     │
                                     ▼
 ┌─────────────────────────────────────────────────────────────────────┐
-│                         INFERENCE SERVICE                            │
-│                                                                       │
-│   Client                  FastAPI app                 BERT model     │
-│                                                                       │
+│                         INFERENCE SERVICE                           │
+│                                                                     │
+│   Client                  FastAPI app                 BERT model    │
+│                                                                     │
 │  POST /predict  ──────▶  Input validation   ──────▶  Tokenizer      │
-│  {sentence}              (Pydantic schema)            + Forward pass │
-│                                                                │      │
-│  {is_claim,    ◀──────  Format response    ◀──────  Softmax   │      │
-│   confidence}            + echo sentence             probabilities   │
-│                                                                       │
+│  {sentence}              (Pydantic schema)           + Forward pass │
+│                                                              │      │
+│  {is_claim,    ◀──────  Format response    ◀──────  Softmax  │      │
+│   confidence}            + echo sentence             probabilities  │
+│                                                                     │
 │   GET /health  ──────▶  model_loaded: bool                          │
-│                                                                       │
+│                                                                     │
 │  Rate limiting: 60 req/min per IP (slowapi)                         │
 │  Input size:   max 2,000 chars (Pydantic)                           │
 │  Model load:   once at startup via lifespan hook                    │
@@ -46,12 +46,12 @@ The claim detection system has three layers: a training pipeline that produces m
                                     │
                                     ▼
 ┌─────────────────────────────────────────────────────────────────────┐
-│                         CONTAINER (Docker)                           │
-│                                                                       │
-│  python:3.11-slim base image                                         │
-│  Model weights baked into image at build time                        │
-│  Health check polls /health every 30s                                │
-│  Port 8000 exposed                                                   │
+│                         CONTAINER (Docker)                          │
+│                                                                     │
+│  python:3.11-slim base image                                        │
+│  Model weights baked into image at build time                       │
+│  Health check polls /health every 30s                               │
+│  Port 8000 exposed                                                  │
 └─────────────────────────────────────────────────────────────────────┘
 ```
 

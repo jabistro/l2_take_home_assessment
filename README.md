@@ -60,6 +60,8 @@ API docs available at `http://localhost:8000/docs`.
 
 ### 4. Run with Docker
 
+> **Prerequisite:** complete steps 1 and 2 first — the Docker image bakes the model weights in at build time, so `training/model_output/` must exist before running `docker-compose up --build`.
+
 ```bash
 docker-compose up --build
 ```

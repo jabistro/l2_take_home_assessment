@@ -46,6 +46,8 @@ python train.py
 
 > **Note on training time:** Full fine-tuning of `bert-base-uncased` on the complete ~10,400-sample training set for 5 epochs takes approximately 8–15 hours on CPU. By default, `train.py` runs a reduced demo using 2,000 samples and 3 epochs (~7 min on Apple Silicon MPS, ~20–30 min on CPU), which is sufficient to produce a functional model. Pass `--full` to run the complete training run.
 
+> **Note on model weights:** `training/model_output/` is gitignored because the weights are too large to store in version control. You must run `train.py` (step 2) before running the API or integration tests — both depend on the weights being present at that path.
+
 ### 3. Run the API
 
 ```bash

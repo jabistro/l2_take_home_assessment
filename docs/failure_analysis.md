@@ -5,11 +5,11 @@ Analysis of the 264 misclassified examples from the 2,600-sample held-out test s
 
 ## Overview
 
-| | False Positives (FP) | False Negatives (FN) |
-|---|---|---|
-| Count | 118 | 146 |
+|             | False Positives (FP)                      | False Negatives (FN)                           |
+|-------------|-------------------------------------------|------------------------------------------------|
+| Count       | 118                                       | 146                                            |
 | Description | Predicted *claim*, actually *not a claim* | Predicted *not a claim*, actually *is a claim* |
-| Cost | Wasted fact-checking effort | Missed claim — slips through undetected |
+| Cost        | Wasted fact-checking effort               | Missed claim — slips through undetected        |
 
 The model's precision (0.900) and recall (0.880) suggest it errs
 slightly more toward false negatives than false positives — it misses ~12% of real claims
@@ -19,13 +19,13 @@ while incorrectly flagging ~10% of non-claims.
 
 Sentences the model incorrectly labeled as claims (precision errors).
 
-| Pattern | % of FPs | % of all non-claims |
-|---|---|---|
-| Contains numbers | 15.3% | 2.9% |
-| Contains named entities | 44.9% | 39.0% |
-| Is a question | 2.5% | 4.0% |
-| Short sentence (<8 words) | 10.2% | 19.5% |
-| Avg word count | 21.5 words | 17.0 words |
+| Pattern                   | % of FPs   | % of all non-claims |
+|---------------------------|------------|---------------------|
+| Contains numbers          | 15.3%      | 2.9%                |
+| Contains named entities   | 44.9%      | 39.0%               |
+| Is a question             | 2.5%       | 4.0%                |
+| Short sentence (<8 words) | 10.2%      | 19.5%               |
+| Avg word count            | 21.5 words | 17.0 words          |
 
 **Most confidently wrong false positives:**
 
@@ -52,13 +52,13 @@ model error, and that numeric content is the dominant false-positive trigger.
 
 Sentences the model incorrectly labeled as non-claims (recall errors).
 
-| Pattern | % of FNs | % of all claims |
-|---|---|---|
-| Contains numbers | 6.2% | 42.5% |
-| Contains named entities | 50.7% | 62.4% |
-| Is a question | 2.7% | 0.7% |
-| Short sentence (<8 words) | 8.9% | 6.1% |
-| Avg word count | 21.3 words | 20.3 words |
+| Pattern                   | % of FNs   | % of all claims |
+|---------------------------|------------|-----------------|
+| Contains numbers          | 6.2%       | 42.5%           |
+| Contains named entities   | 50.7%      | 62.4%           |
+| Is a question             | 2.7%       | 0.7%            |
+| Short sentence (<8 words) | 8.9%       | 6.1%            |
+| Avg word count            | 21.3 words | 20.3 words      |
 
 **Most confidently wrong false negatives:**
 

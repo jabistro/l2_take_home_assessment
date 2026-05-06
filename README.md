@@ -91,6 +91,8 @@ Evaluated on the held-out test set (2,600 samples). See [`docs/evaluation.md`](d
 
 The demo run uses 2,000 training samples and 3 epochs. The ~2% F1 gap vs. the paper's full run (10,397 samples, 5 epochs) is expected and closes with more training data.
 
+See [`docs/failure_analysis.md`](docs/failure_analysis.md) for an analysis of the 264 misclassified examples, including patterns in false positives and false negatives and implications for threshold tuning and future training.
+
 ## Testing
 
 ```bash
